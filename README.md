@@ -10,7 +10,7 @@ Operations Center) ao investigar alertas de acesso suspeito.
 |---|---|---|
 | Força bruta | Alta | Muitas tentativas de login falhas vindas do mesmo IP |
 | Password spraying | Alta | O mesmo IP tentando login contra vários usuários diferentes |
-| Login fora do horário | Média | Login bem-sucedido fora do horário comercial (22h–6h) |
+| Login fora do horário | Média | Login bem-sucedido fora do horário comercial (22h-6h) |
 | Sucesso após falhas | Crítica | Login bem-sucedido logo depois de uma sequência de falhas - possível indício de credencial comprometida |
 
 ## Como rodar
