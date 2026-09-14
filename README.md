@@ -11,7 +11,7 @@ Operations Center) ao investigar alertas de acesso suspeito.
 | Força bruta | Alta | Muitas tentativas de login falhas vindas do mesmo IP |
 | Password spraying | Alta | O mesmo IP tentando login contra vários usuários diferentes |
 | Login fora do horário | Média | Login bem-sucedido fora do horário comercial (22h–6h) |
-| Sucesso após falhas | Crítica | Login bem-sucedido logo depois de uma sequência de falhas — possível indício de credencial comprometida |
+| Sucesso após falhas | Crítica | Login bem-sucedido logo depois de uma sequência de falhas - possível indício de credencial comprometida |
 
 ## Como rodar
 
@@ -43,8 +43,7 @@ Alertas gerados: 6
 
 Este projeto simula a primeira etapa do trabalho de um analista de SOC:
 transformar um log bruto em uma lista de alertas priorizados por
-severidade, prontos para triagem e escalonamento — o mesmo fluxo descrito
-em vagas de monitoramento de segurança (SIEM, triagem de alertas,
+severidade, prontos para triagem e escalonamento. o repositório visa focar em monitoramento de segurança (SIEM, triagem de alertas,
 resposta inicial a incidentes).
 
 ## Próximos passos
@@ -55,5 +54,5 @@ resposta inicial a incidentes).
 
 ## Tecnologias
 
-- Python 3 (biblioteca padrão apenas — sem dependências externas)
+- Python 3 (biblioteca padrão apenas - sem dependências externas)
 "# SOC-Log-Analyzer" 
