@@ -1,58 +1,57 @@
 # SOC Log Analyzer
 
-Ferramenta de triagem de nível 1 para logs de autenticação, simulando as
-primeiras verificações feitas por um analista em um SOC (Security
-Operations Center) ao investigar alertas de acesso suspeito.
+A Level 1 triage tool for authentication logs, simulating the first
+checks a SOC (Security Operations Center) analyst runs when
+investigating suspicious access alerts.
 
-## O que ela detecta
+## What it detects
 
-| Padrão | Severidade | Descrição |
+| Pattern | Severity | Description |
 |---|---|---|
-| Força bruta | Alta | Muitas tentativas de login falhas vindas do mesmo IP |
-| Password spraying | Alta | O mesmo IP tentando login contra vários usuários diferentes |
-| Login fora do horário | Média | Login bem-sucedido fora do horário comercial (22h-6h) |
-| Sucesso após falhas | Crítica | Login bem-sucedido logo depois de uma sequência de falhas - possível indício de credencial comprometida |
+| Brute force | High | Many failed login attempts from the same IP |
+| Password spraying | High | The same IP attempting login against several different users |
+| Off-hours login | Medium | Successful login outside business hours (10pm-6am) |
+| Success after failures | Critical | Successful login right after a streak of failures - possible sign of a compromised credential |
 
-## Como rodar
+## How to run
 
 ```bash
 python analyzer.py logs/auth_sample.csv
 ```
 
-O arquivo de log de entrada é um CSV simples, no formato:
+The input log file is a simple CSV, formatted as:
 
 ```csv
 timestamp,ip,usuario,status
 2026-09-09 14:02:10,203.0.113.55,admin,fail
 ```
 
-## Exemplo de saída
+## Example output
 
+```bash
+Events analyzed: 19
+Alerts generated: 6
+
+[CRITICAL] success_after_failures — IP 192.0.2.77
+login by 'carlos.pereira' succeeded after 3 consecutive failures
+
+[HIGH] brute_force — IP 203.0.113.55
+6 failed login attempts
 ```
-Eventos analisados: 19
-Alertas gerados: 6
 
-[CRITICA] sucesso_apos_falhas — IP 192.0.2.77
-    login de 'carlos.pereira' teve sucesso apos 3 falhas seguidas
+## Motivation
 
-[ALTA] forca_bruta — IP 203.0.113.55
-    6 tentativas de login falhas
-```
+This project simulates the first stage of a SOC analyst's job: turning a
+raw log into a severity-ranked list of alerts, ready for triage and
+escalation - the same workflow described in security monitoring roles
+(SIEM, alert triage, initial incident response).
 
-## Motivação
+## Next steps
 
-Este projeto simula a primeira etapa do trabalho de um analista de SOC:
-transformar um log bruto em uma lista de alertas priorizados por
-severidade, prontos para triagem e escalonamento. o repositório visa focar em monitoramento de segurança (SIEM, triagem de alertas,
-resposta inicial a incidentes).
+- [ ] Read real syslog/auth.log files directly
+- [ ] Add IP geolocation to detect "impossible travel"
+- [ ] Export alerts as JSON for integration with other tools
 
-## Próximos passos
+## Tech stack
 
-- [ ] Ler logs diretamente no formato syslog/auth.log real
-- [ ] Adicionar geolocalização de IP para detectar "impossible travel"
-- [ ] Exportar alertas em JSON para integração com outras ferramentas
-
-## Tecnologias
-
-- Python 3 (biblioteca padrão apenas - sem dependências externas)
-"# SOC-Log-Analyzer" 
+- Python 3 (standard library only - no external dependencies)
